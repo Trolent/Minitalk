@@ -6,7 +6,7 @@
 #    By: trolland <trolland@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 16:23:19 by trolland          #+#    #+#              #
-#    Updated: 2024/05/15 17:07:56 by trolland         ###   ########.fr        #
+#    Updated: 2024/05/18 17:09:33 by trolland         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,14 +91,14 @@ $(LIBFT):
 
 clean:
 	@$(MAKE) --no-print-directory clean -C libft
-	@echo "Cleaning minitalk's object files..."
+	@echo "Cleaning $(NAME)'s object files..."
 	@rm -rf object
 	@rm -rf object_bonus
 
 fclean: clean
-	@echo "Cleaning libft..."
+	@echo "Cleaning libft.a ..."
 	@rm -f libft/libft.a
-	@echo "Cleaning minitalk..."
+	@echo "Cleaning $(NAME)'s exec..."
 	@rm -f $(NAME_SERV) $(NAME_CLI) $(NAME_SERV_BONUS) $(NAME_CLI_BONUS)  
 
 re: fclean all
