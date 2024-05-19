@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:03:38 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/15 19:52:54 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/16 19:23:28 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ int	char_to_signal(int pid, char c)
 void	tranform_to_signal(int pid, char *str)
 {
 	int	i;
-    int count;
+    // int count;
 
-    count = 0;
+    // count = 0;
 	i = -1;
 	while (str[++i] != 0)
     {
-        count += char_to_signal(pid, str[i]);
+        //count += 
+		char_to_signal(pid, str[i]);
     }
     printf("message received\n");
 }
