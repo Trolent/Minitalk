@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:03:41 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/15 19:47:01 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:05:46 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ void	receive_and_respond(int num, siginfo_t *info, void *context)
 
 	(void)context;
 	if (num == SIGUSR1)
+	{
 		c = c | (1 << i);
+		kill(info->si_pid, SIGUSR1);
+	}
+	else
+		kill(info->si_pid, SIGUSR1);
 	i--;
 	if (i == -1)
 	{
 		ft_printf("%c", c);
 		i = 7;
 		c = 0;
-		kill(info->si_pid, SIGUSR1);
 	}
 }
 
