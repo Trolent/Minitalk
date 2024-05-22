@@ -6,27 +6,22 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:03:38 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/21 17:47:54 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:47:47 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-typedef struct s_struct
-{
-	int	responded;
-	int	signal;
-}		t_struct;
-
-t_struct test;
+int		g_responded = 0;
 
 void	response(int num)
 {
-	if (num == test.signal)
-	{
-		test.responded = 1;
-	}
+	if (num == SIGUSR1)
+		g_responded = 1;
+	if (num == SIGUSR2)
+		g_responded = 1;
 }
+
 int	char_to_signal(int pid, char c)
 {
 	int	i;
@@ -35,25 +30,15 @@ int	char_to_signal(int pid, char c)
 	i = 8;
 	while (i--)
 	{
-		test.responded = 0;
+		g_responded = 0;
 		temp = (c >> i) & 1;
 		if (temp == 1)
-		{	
-			test.signal = SIGUSR1;
 			kill(pid, SIGUSR1);
-		}
 		else
-		{
-			test.signal = SIGUSR2;
 			kill(pid, SIGUSR2);
-		}
+		while (!g_responded)
+			pause();
 		usleep(50);
-		pause();
-		if (test.responded == 0)
-		{
-			ft_printf("Error transmitting message\n");
-			return(0);
-		}
 	}
 	return (1);
 }
@@ -65,8 +50,9 @@ void	tranform_to_signal(int pid, char *str)
 	i = -1;
 	while (str[++i] != 0)
 		if (!char_to_signal(pid, str[i]))
-			return;
-	printf("message received\n");
+			return ;
+	if (char_to_signal(pid, 0) == 1 && g_responded == 1)
+		ft_printf("message received\n");
 }
 
 int	main(int argc, char **argv)
