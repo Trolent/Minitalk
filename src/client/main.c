@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:03:38 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/22 16:46:00 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:44:13 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	char_to_signal(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(5);
+		usleep(100);
 	}
 }
 
@@ -36,6 +36,7 @@ void	tranform_to_signal(int pid, char *str)
 	i = -1;
 	while (str[++i])
 		char_to_signal(pid, str[i]);
+	char_to_signal(pid, 0);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 #    By: trolland <trolland@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 16:23:19 by trolland          #+#    #+#              #
-#    Updated: 2024/05/22 16:49:56 by trolland         ###   ########.fr        #
+#    Updated: 2024/05/25 15:45:49 by trolland         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME_SERV_BONUS = server_bonus
 NAME_CLI_BONUS = client_bonus
 
 
-SRC := verify_pid.c
+SRC := verify_pid.c minitalk_bonus_utils.c
 
 LIBFT	= 	libft/libft.a
 
@@ -35,7 +35,7 @@ CLIENT_MAIN_BONUS := src/client_bonus/main.c
 
 CC := cc
 
-CFLAGS := -Wall -Werror -Wextra -MMD -MP -Iincludes -Ilibft -g
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Ilibft -g
 
 all: $(NAME)
 

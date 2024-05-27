@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:45:51 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/18 12:48:32 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:51:20 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int	verify_pid(char *str)
 
 	i = -1;
 	while (str[++i])
-	{
 		if (!ft_isdigit(str[i]))
 			return (-1);
-	}
 	return (0);
 }
