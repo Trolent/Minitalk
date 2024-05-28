@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:03:41 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/25 17:48:38 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:49:01 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,33 @@ void	receive_signal(int pid, t_char **string, char c)
 	ft_add_back(string, new);
 }
 
+t_char	*get_tmp(t_char *string, t_char *tmp, siginfo_t *info)
+{
+	tmp = string;
+	while (tmp && tmp->pid != info->si_pid)
+		tmp = tmp->next_pid;
+	while (tmp && tmp->last)
+		tmp = tmp->last;
+	return (tmp);
+}
+
+void	send_response(int pid, int num)
+{
+	usleep(50);
+	if (num == SIGUSR1)
+		kill(pid, SIGUSR1);
+	else if (num == SIGUSR2)
+		kill(pid, SIGUSR2);
+}
+
 void	receive_and_respond(int num, siginfo_t *info, void *context)
 {
 	static t_char	*string;
 	t_char			*tmp;
 
 	(void)context;
-	tmp = string;
-	while (tmp && tmp->pid != info->si_pid)
-		tmp = tmp->next_pid;
-	while (tmp && tmp->last)
-		tmp = tmp->last;
+	tmp = NULL;
+	tmp = get_tmp(string, tmp, info);
 	if (tmp && tmp->pid == info->si_pid && tmp->sig_no >= 0)
 	{
 		if (tmp->sig_no >= 0 && num == SIGUSR1)
@@ -53,13 +69,7 @@ void	receive_and_respond(int num, siginfo_t *info, void *context)
 			receive_signal(info->si_pid, &string, 0);
 	}
 	if (info->si_pid)
-	{
-		usleep(50);
-		if (num == SIGUSR1)
-			kill(info->si_pid, SIGUSR1);
-		else if (num == SIGUSR2)
-			kill(info->si_pid, SIGUSR2);
-	}
+		send_response(info->si_pid, num);
 }
 
 int	main(void)

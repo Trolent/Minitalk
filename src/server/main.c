@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:03:41 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/24 20:12:51 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:50:20 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void	receive_signal(int num)
 	i--;
 	if (i == -1)
 	{
-		new = ft_new_node(c);
+		new = ft_new_node(c, 0);
 		if (!new)
 		{
-			free_string(string);
+			free_string(&string, 0);
 			return ;
 		}
 		ft_add_back(&string, new);
 		if (c == 0)
 		{
-			ft_print_string(&string);
+			ft_print_string(&string, 0);
 		}
 		i = 7;
 		c = 0;

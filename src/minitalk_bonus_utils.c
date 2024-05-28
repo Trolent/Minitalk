@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 19:49:40 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/25 17:52:42 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:48:40 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_char	*ft_new_node(char c, int pid)
 void	ft_add_back(t_char **lst, t_char *new)
 {
 	t_char	*tmp;
-	t_char  *lead;
+	t_char	*lead;
 
 	if (!*lst)
 	{
@@ -39,7 +39,7 @@ void	ft_add_back(t_char **lst, t_char *new)
 		return ;
 	}
 	tmp = *lst;
-	while(tmp->pid != new->pid && tmp->next_pid)
+	while (tmp->pid != new->pid && tmp->next_pid)
 		tmp = tmp->next_pid;
 	if (tmp->pid == new->pid)
 	{
@@ -71,7 +71,7 @@ void	free_lst(t_char *lst)
 void	free_string(t_char **string, int pid)
 {
 	t_char	*tmp;
-	t_char  *lead;
+	t_char	*lead;
 
 	lead = *string;
 	if (lead->pid == pid)
@@ -94,7 +94,7 @@ void	ft_print_string(t_char **string, int pid)
 	t_char	*tmp;
 
 	tmp = *string;
-	while(tmp && tmp->pid != pid)
+	while (tmp && tmp->pid != pid)
 		tmp = tmp->next_pid;
 	if (!tmp)
 		return ;
@@ -106,5 +106,3 @@ void	ft_print_string(t_char **string, int pid)
 	ft_printf("\n");
 	free_string(string, pid);
 }
-
-simultaniously 
