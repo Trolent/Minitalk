@@ -6,7 +6,7 @@
 /*   By: trolland <trolland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 17:38:07 by trolland          #+#    #+#             */
-/*   Updated: 2024/05/29 15:28:56 by trolland         ###   ########.fr       */
+/*   Updated: 2024/05/30 09:54:59 by trolland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_char
 	struct s_char	*last;
 
 }					t_char;
-
 
 t_char				*ft_new_node(char c, int pid);
 void				ft_add_back(t_char **lst, t_char *new);
